@@ -1,0 +1,15 @@
+<div>
+    <div class="container-x">
+        <span id="dialog-title">{{data.title}}</span>
+        <button mat-icon-button id="close-icon" (click)="close()">
+            <mat-icon>clear</mat-icon>
+        </button>
+    </div>
+    <div class="content-container">
+        <span class="content-span">{{data.message}}</span>
+    </div>
+    <div class="container-x">
+        <button mat-raised-button id="no-button" [mat-dialog-close]="false">No</button>
+        <button mat-raised-button id="yes-button" [mat-dialog-close]="true">Yes</button>
+    </div>
+</div>

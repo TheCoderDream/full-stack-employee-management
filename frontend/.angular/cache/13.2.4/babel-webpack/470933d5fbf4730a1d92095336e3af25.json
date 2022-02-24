@@ -1,0 +1,1 @@
+{"ast":null,"code":"import { InjectionToken } from '@angular/core';\nimport { environment } from '../../environments/environment';\nexport var API_URL = new InjectionToken('API_URL');\nexport var apiUrlProvider = {\n  provide: API_URL,\n  useValue: environment.apiURL\n};","map":null,"metadata":{},"sourceType":"module"}

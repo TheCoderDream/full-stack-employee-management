@@ -1,0 +1,19 @@
+<div class="main-container">
+  <div class="title-container">
+    <h1>Employee Management</h1>
+
+    <button
+      mat-icon-button
+      class="logout-button"
+      *ngIf="router.url === '/employee-list'"
+      title="Logout"
+      (click)="clickedLogout()"
+    >
+      <mat-icon>power_settings_new</mat-icon>
+    </button>
+
+    <!-- <mat-icon>logout</mat-icon> -->
+  </div>
+
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>

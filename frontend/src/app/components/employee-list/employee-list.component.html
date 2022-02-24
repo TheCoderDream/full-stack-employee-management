@@ -1,0 +1,75 @@
+<div class="search-div">
+  <button mat-raised-button (click)="onCreateEmployee()">
+    <mat-icon>add</mat-icon>
+    Create
+  </button>
+  <mat-form-field class="search-form-field" floatLabel="never">
+    <input matInput placeholder="Search" [(ngModel)]="searchKey" autocomplete="off" (keyup)="applyFilter()">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>close</mat-icon>
+    </button>
+  </mat-form-field>
+</div>
+
+<mat-spinner *ngIf="isLoading$ | async"></mat-spinner>
+
+<div class="mat-elevation-z8">
+  <mat-table [dataSource]="(employees$ | async)" matSort>
+    <ng-container matColumnDef="firstName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>First Name</mat-header-cell>
+      <mat-cell *matCellDef="let employee">{{employee.firstName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="lastName">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.lastName}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="mobile">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Phone Number</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.phoneNumber}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="office">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Office</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.office?.name}} / {{element.office?.location}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="birthDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>BirthDate</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.birthDate | date: 'YYYY-MM-dd'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="birthDate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>BirthDate</mat-header-cell>
+      <mat-cell *matCellDef="let element">{{element.birthDate | date: 'YYYY-MM-dd'}}</mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="tags">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>Tags</mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <mat-chip-list aria-label="Tags" [disabled]="true">
+          <mat-chip *ngFor="let tag of element.tags" >
+            {{tag}}
+          </mat-chip>
+        </mat-chip-list>
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef></mat-header-cell>
+      <mat-cell *matCellDef="let element">
+        <button mat-icon-button color="primary" (click)="onEdit(element)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="onDelete(element)"><mat-icon>delete_outline</mat-icon></button>
+      </mat-cell>
+    </ng-container>
+    <!-- loading data -->
+    <ng-container matColumnDef="loading">
+      <mat-footer-cell *matFooterCellDef colspan="6">Loading data...</mat-footer-cell>
+    </ng-container>
+    <!-- no data -->
+    <ng-container matColumnDef="noData">
+      <mat-footer-cell *matFooterCellDef colspan="6">No data.</mat-footer-cell>
+    </ng-container>
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    <mat-footer-row *matFooterRowDef="['loading']" [ngClass]="{'hide': !(isLoading$ | async)}"></mat-footer-row>
+    <mat-footer-row *matFooterRowDef="['noData']" [ngClass]="{'hide': (noData$ | async) }"></mat-footer-row>
+  </mat-table>
+  <!-- paginator -->
+  <mat-paginator [pageSizeOptions]="[5, 10, 25, 50]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</div>

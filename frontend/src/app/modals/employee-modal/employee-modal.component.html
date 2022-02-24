@@ -1,0 +1,56 @@
+<mat-toolbar>
+  <span>{{ noData ? 'Add new employee:' : 'Update employee details:' }}</span>
+  <span class="fill-remaining-space"></span>
+  <button class="btn-dialog-close" mat-stroked-button (click)="onDialogClose()" tabIndex="-1"><mat-icon>clear</mat-icon></button>
+</mat-toolbar>
+<form [formGroup]="form" class="normal-form" (submit)="onSubmit()">
+  <div class="controless-container">
+    <mat-form-field>
+      <input formControlName="firstName" matInput placeholder="First Name*">
+      <mat-error *ngIf="form.hasError('required', 'firstName')">This field is mandatory.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="lastName" matInput placeholder="Last Name*">
+      <mat-error *ngIf="form.hasError('required', 'lastName')">This field is mandatory.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <input formControlName="phoneNumber" matInput placeholder="phoneNumber*">
+      <mat-error *ngIf="form.hasError('required', 'phoneNumber')">This field is mandatory.</mat-error>
+      <mat-error *ngIf="form.hasError('minlength', 'phoneNumber')">Min 10 characters needed.</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-select formControlName="office" placeholder="Office">
+        <ng-container *ngFor="let office of (offices$ | async)">
+          <mat-option [value]="office._id">
+            {{(office || data.office).name}} / {{(office || data.office).location}}
+          </mat-option>
+        </ng-container>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-datepicker #picker></mat-datepicker>
+      <input formControlName="birthDate" matInput [matDatepicker]="picker" placeholder="Birth Date">
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    </mat-form-field>
+    <mat-form-field class="example-chip-list" appearance="fill">
+      <mat-label>Tags</mat-label>
+      <mat-chip-list #chipList aria-label="Tags">
+        <mat-chip *ngFor="let tag of form.value.tags" (removed)="removeTag(tag)" >
+          {{tag}}
+          <button matChipRemove>
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+        <input placeholder="Add new tag..."
+               [matChipInputFor]="chipList"
+               [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+               [matChipInputAddOnBlur]="true"
+               (matChipInputTokenEnd)="addTag($event)">
+      </mat-chip-list>
+    </mat-form-field>
+    <div class="button-row">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">Submit</button>
+      <button mat-raised-button color="warn" (click)="$event.stopPropagation();  onClear()">Clear</button>
+    </div>
+  </div>
+</form>

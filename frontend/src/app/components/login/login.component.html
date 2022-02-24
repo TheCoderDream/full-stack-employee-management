@@ -1,0 +1,39 @@
+<div class="login-card">
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="submit()">
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Email ID</mat-label>
+            <input type="text" matInput formControlName="email" [(ngModel)]="credentials.email">
+            <mat-error *ngIf="form.hasError('required', 'email')">
+                Please enter your email id
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p>
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input type="password" matInput formControlName="password" [(ngModel)]="credentials.password">
+            <mat-error *ngIf="form.hasError('required', 'password')">
+                Please enter your password
+            </mat-error>
+          </mat-form-field>
+        </p>
+
+        <p *ngIf="error" class="error">
+          {{ error }}
+        </p>
+
+        <div class="button">
+          <button type="submit" mat-button>Login</button>
+        </div>
+
+        <div class="button">
+          <button type="button" (click)="onClickRegister()" mat-button >Not a member? Register Now</button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

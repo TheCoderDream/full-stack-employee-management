@@ -1,0 +1,206 @@
+/* You can add global styles to this file, and also import other style files */
+@import url("https://fonts.googleapis.com/css?family=Lato:700&display=swap");
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@700&display=swap");
+
+html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #e5e8e8;
+}
+
+button:focus,
+button:active:focus,
+button.active:focus {
+  outline: none !important;
+  outline-style: none !important;
+}
+
+div.container {
+  margin: 0px 40px;
+}
+
+.fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+form.normal-form {
+  margin: 10px;
+}
+
+.controless-container {
+  width: 100%;
+  padding: 5%;
+}
+
+.controless-container>* {
+  width: 100%;
+}
+
+.add-bottom-padding {
+  padding: 10px;
+}
+
+mat-radio-group mat-radio-button {
+  margin-left: 5px;
+}
+
+.button-row button {
+  margin: 5px;
+}
+
+
+/* notification  */
+
+snack-bar-container.insert {
+  background-color: rgba(30, 158, 83, 0.89);
+  color: white;
+  border: 2px solid rgb(32, 131, 32);
+}
+
+snack-bar-container.reset {
+  background-color: rgba(247, 147, 101, 0.89);
+  color: white;
+  border: 2px solid red;
+}
+
+snack-bar-container.update {
+  background-color: rgba(80, 123, 241, 0.89);
+  color: white;
+  border: 2px solid rgb(18, 49, 190);
+}
+
+snack-bar-container.warn {
+  background-color: rgba(209, 53, 53, 0.89);
+  color: white;
+  border: 2px solid rgb(177, 25, 25);
+}
+
+snack-bar-container.notification simple-snackbar {
+  font-size: 18px, !important;
+  font-weight: bold;
+}
+
+.hide {
+  display: none;
+}
+
+mat-footer-row mat-footer-cell {
+  justify-content: center;
+  font-style: italic;
+}
+
+
+/* filter control */
+
+.search-div {
+  margin: 10px;
+}
+
+.search-form-field {
+  width: 60%;
+  margin-left: 10px;
+  padding: 5px 10px;
+  background-color: #f5f5f5;
+  border-radius: 5px;
+}
+
+.search-form-field div.mat-form-field-underline {
+  display: none;
+}
+
+.search-form-field div.mat-form-field-infix {
+  border-top: 0px;
+}
+
+.search-form-field div.mat-form-field-wrapper {
+  padding-bottom: 0px;
+}
+
+.search-form-field div.mat-form-field-suffix button {
+  width: 32px;
+  height: 32px;
+}
+
+.btn-dialog-close {
+  width: 45px;
+  min-width: 0px !important;
+  height: 45px;
+  padding: 0px !important;
+}
+
+
+/* custom delete dialog */
+
+.confirm-dialog-container .mat-dialog-container {
+  border-radius: 0.25em 0.25em 0.4em 0.4em;
+  padding: 10px;
+}
+
+.confirm-dialog-container .content-container {
+  margin: 5px 5px 15px 15px;
+  color: grey;
+  display: flex;
+}
+
+.confirm-dialog-container #close-icon {
+  margin-left: auto;
+  order: 2;
+  font-weight: bolder;
+  color: rgb(209, 44, 44);
+}
+
+.container-x {
+  display: flex;
+  justify-content: space-between;
+}
+
+.confirm-dialog-container #no-button {
+  height: 50px;
+  width: 40%;
+  margin-left: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  background-color: rgb(185, 91, 57);
+  color: white;
+  border-radius: 0px;
+}
+
+.confirm-dialog-container #yes-button {
+  height: 50px;
+  width: 40%;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  font-size: 18px;
+  background-color: rgb(185, 57, 57);
+  color: white;
+  border-radius: 0px;
+}
+
+.confirm-dialog-container span.content-span {
+  padding: 15px 15px;
+  text-align: center;
+  font-size: 20px;
+}
+
+#dialog-title {
+  padding-top: 10px;
+  padding-left: 10px;
+  font-size: 18px;
+  font-weight: 700;
+  text-align: center;
+  color: rgb(209, 44, 44);
+}
+
+mat-spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 999;
+}
